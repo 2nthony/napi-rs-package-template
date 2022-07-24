@@ -5,7 +5,7 @@ on:
     branches:
       - main
     tags-ignore:
-      - '**'
+      - "**"
   pull_request:
 
 jobs:
@@ -19,8 +19,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'yarn'
-          check-latest: true
 
       - name: Install
         uses: actions-rs/toolchain@v1
@@ -30,17 +28,31 @@ jobs:
           override: true
           components: rustfmt, clippy
 
-      - name: Cache NPM dependencies
+      - uses: pnpm/action-setup@v2.2.2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 7
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+
+      - name: Setup pnpm cache
         uses: actions/cache@v3
         with:
-          path: node_modules
-          key: npm-cache-lint-node@16
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
 
-      - name: 'Install dependencies'
-        run: yarn install --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
+      - name: Install dependencies
+        run: pnpm install
 
       - name: ESLint
-        run: yarn lint
+        run: pnpm run lint
 
       - name: Cargo fmt
         run: cargo fmt -- --check
