@@ -53,7 +53,8 @@
     "lint": "eslint . -c ./.eslintrc.yml",
     "prepublishOnly": "napi prepublish -t npm",
     "test": "vitest",
-    "version": "napi version"
+    "version": "napi version",
+    "rename": "napi rename && npm run format:prettier"
   },
   "devDependencies": {
     "@2nthony/prettier-config": "^1.0.1",
