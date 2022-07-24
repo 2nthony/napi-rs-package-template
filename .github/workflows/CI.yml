@@ -16,7 +16,6 @@ env:
       - .editorconfig
       - docs/**
   pull_request: null
-
 jobs:
   build:
     if: "!contains(github.event.head_commit.message, 'skip ci')"
@@ -108,13 +107,11 @@ jobs:
     runs-on: ${{ matrix.settings.host }}
     steps:
       - uses: actions/checkout@v3
-
       - name: Setup node
         uses: actions/setup-node@v3
         if: ${{ !matrix.settings.docker }}
         with:
           node-version: 16
-
       - name: Install
         uses: actions-rs/toolchain@v1
         if: ${{ !matrix.settings.docker }}
@@ -123,7 +120,6 @@ jobs:
           override: true
           toolchain: stable
           target: ${{ matrix.settings.target }}
-
       - name: Cache cargo
         uses: actions/cache@v3
         with:
@@ -136,19 +132,16 @@ jobs:
             .cargo-cache/git/db/
             target/
           key: ${{ matrix.settings.target }}-cargo-registry
-
       - uses: pnpm/action-setup@v2.2.2
         name: Install pnpm
         id: pnpm-install
         with:
           version: 7
           run_install: false
-
       - name: Get pnpm store directory
         id: pnpm-cache
         run: |
           echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-
       - name: Setup pnpm cache
         uses: actions/cache@v3
         with:
@@ -156,53 +149,44 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-
       - name: Setup toolchain
         run: ${{ matrix.settings.setup }}
         if: ${{ matrix.settings.setup }}
         shell: bash
-
       - name: Setup node x86
         if: matrix.settings.target == 'i686-pc-windows-msvc'
         run: pnpm config set supportedArchitectures.cpu "ia32"
         shell: bash
-
       - name: Install dependencies
         run: pnpm install
-
       - name: Setup node x86
         uses: actions/setup-node@v3
         if: matrix.settings.target == 'i686-pc-windows-msvc'
         with:
           node-version: 16
           architecture: x86
-
       - name: Build in docker
         uses: addnab/docker-run-action@v3
         if: ${{ matrix.settings.docker }}
         with:
           image: ${{ matrix.settings.docker }}
-          options: --user 0:0 -v ${{ github.workspace }}/.cargo-cache/git/db:/root/.cargo/git/db -v ${{ github.workspace }}/.cargo/registry/cache:/root/.cargo/registry/cache -v ${{ github.workspace }}/.cargo/registry/index:/root/.cargo/registry/index -v ${{ github.workspace }}:/build -w /build
+          options: "--user 0:0 -v ${{ github.workspace }}/.cargo-cache/git/db:/root/.cargo/git/db -v ${{ github.workspace }}/.cargo/registry/cache:/root/.cargo/registry/cache -v ${{ github.workspace }}/.cargo/registry/index:/root/.cargo/registry/index -v ${{ github.workspace }}:/build -w /build"
           run: ${{ matrix.settings.build }}
-
       - name: Build
         run: ${{ matrix.settings.build }}
         if: ${{ !matrix.settings.docker }}
         shell: bash
-
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: bindings-${{ matrix.settings.target }}
           path: ${{ env.APP_NAME }}.*.node
           if-no-files-found: error
-
   build-freebsd:
     runs-on: macos-12
     name: Build FreeBSD
     steps:
       - uses: actions/checkout@v3
-
       - name: Build
         id: build
         uses: vmactions/freebsd-vm@v0.2.0
@@ -241,14 +225,12 @@ jobs:
             pnpm test
             rm -rf node_modules
             rm -rf target
-
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: bindings-freebsd
           path: ${{ env.APP_NAME }}.*.node
           if-no-files-found: error
-
   test-macOS-windows-binding:
     name: Test bindings on ${{ matrix.settings.target }} - node@${{ matrix.node }}
     needs:
@@ -266,24 +248,20 @@ jobs:
     runs-on: ${{ matrix.settings.host }}
     steps:
       - uses: actions/checkout@v3
-
       - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-
       - uses: pnpm/action-setup@v2.2.2
         name: Install pnpm
         id: pnpm-install
         with:
           version: 7
           run_install: false
-
       - name: Get pnpm store directory
         id: pnpm-cache
         run: |
           echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-
       - name: Setup pnpm cache
         uses: actions/cache@v3
         with:
@@ -291,23 +269,18 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-
       - name: Install dependencies
         run: pnpm install
-
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
           name: bindings-${{ matrix.settings.target }}
           path: .
-
       - name: List packages
         run: ls -R .
         shell: bash
-
       - name: Test bindings
         run: pnpm run test
-
   test-linux-x64-gnu-binding:
     name: Test bindings on Linux-x64-gnu - node@${{ matrix.node }}
     needs:
@@ -322,24 +295,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
       - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-
       - uses: pnpm/action-setup@v2.2.2
         name: Install pnpm
         id: pnpm-install
         with:
           version: 7
           run_install: false
-
       - name: Get pnpm store directory
         id: pnpm-cache
         run: |
           echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-
       - name: Setup pnpm cache
         uses: actions/cache@v3
         with:
@@ -347,23 +316,18 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-
       - name: Install dependencies
         run: pnpm install
-
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
           name: bindings-x86_64-unknown-linux-gnu
           path: .
-
       - name: List packages
         run: ls -R .
         shell: bash
-
       - name: Test bindings
         run: docker run --rm -v $(pwd):/build -w /build node:${{ matrix.node }}-slim pnpm run test
-
   test-linux-x64-musl-binding:
     name: Test bindings on x86_64-unknown-linux-musl - node@${{ matrix.node }}
     needs:
@@ -378,24 +342,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
       - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-
       - uses: pnpm/action-setup@v2.2.2
         name: Install pnpm
         id: pnpm-install
         with:
           version: 7
           run_install: false
-
       - name: Get pnpm store directory
         id: pnpm-cache
         run: |
           echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-
       - name: Setup pnpm cache
         uses: actions/cache@v3
         with:
@@ -403,25 +363,20 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-
       - name: Install dependencies
         run: |
           pnpm config set supportedArchitectures.libc "musl"
           pnpm install
-
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
           name: bindings-x86_64-unknown-linux-musl
           path: .
-
       - name: List packages
         run: ls -R .
         shell: bash
-
       - name: Test bindings
         run: docker run --rm -v $(pwd):/build -w /build node:${{ matrix.node }}-alpine pnpm run test
-
   test-linux-aarch64-gnu-binding:
     name: Test bindings on aarch64-unknown-linux-gnu - node@${{ matrix.node }}
     needs:
@@ -436,31 +391,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: docker run --rm --privileged multiarch/qemu-user-static:register --reset
-
       - uses: actions/checkout@v3
-
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
           name: bindings-aarch64-unknown-linux-gnu
           path: .
-
       - name: List packages
         run: ls -R .
         shell: bash
-
       - uses: pnpm/action-setup@v2.2.2
         name: Install pnpm
         id: pnpm-install
         with:
           version: 7
           run_install: false
-
       - name: Get pnpm store directory
         id: pnpm-cache
         run: |
           echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-
       - name: Setup pnpm cache
         uses: actions/cache@v3
         with:
@@ -468,13 +417,11 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-
       - name: Install dependencies
         run: |
           pnpm config set supportedArchitectures.cpu "arm64"
           pnpm config set supportedArchitectures.libc "glibc"
           pnpm install
-
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
@@ -484,7 +431,6 @@ jobs:
             set -e
             pnpm run test
             ls -la
-
   test-linux-aarch64-musl-binding:
     name: Test bindings on aarch64-unknown-linux-musl - node@${{ matrix.node }}
     needs:
@@ -492,31 +438,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: docker run --rm --privileged multiarch/qemu-user-static:register --reset
-
       - uses: actions/checkout@v3
-
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
           name: bindings-aarch64-unknown-linux-musl
           path: .
-
       - name: List packages
         run: ls -R .
         shell: bash
-
       - uses: pnpm/action-setup@v2.2.2
         name: Install pnpm
         id: pnpm-install
         with:
           version: 7
           run_install: false
-
       - name: Get pnpm store directory
         id: pnpm-cache
         run: |
           echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-
       - name: Setup pnpm cache
         uses: actions/cache@v3
         with:
@@ -524,13 +464,11 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-
       - name: Install dependencies
         run: |
           pnpm config set supportedArchitectures.cpu "arm64"
           pnpm config set supportedArchitectures.libc "musl"
           pnpm install
-
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
@@ -541,7 +479,6 @@ jobs:
             apk add nodejs npm
             npm i -g pnpm
             pnpm run test
-
   test-linux-arm-gnueabihf-binding:
     name: Test bindings on armv7-unknown-linux-gnueabihf - node@${{ matrix.node }}
     needs:
@@ -556,24 +493,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: docker run --rm --privileged multiarch/qemu-user-static:register --reset
-
       - uses: actions/checkout@v3
-
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
           name: bindings-armv7-unknown-linux-gnueabihf
           path: .
-
       - name: List packages
         run: ls -R .
         shell: bash
-
       - name: Get pnpm store directory
         id: pnpm-cache
         run: |
           echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-
       - name: Setup pnpm cache
         uses: actions/cache@v3
         with:
@@ -581,12 +513,10 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-
       - name: Install dependencies
         run: |
           pnpm config set supportedArchitectures.cpu "arm"
           pnpm install
-
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
@@ -596,7 +526,6 @@ jobs:
             set -e
             pnpm run test
             ls -la
-
   publish:
     name: Publish
     runs-on: ubuntu-latest
@@ -610,24 +539,20 @@ jobs:
       - test-linux-arm-gnueabihf-binding
     steps:
       - uses: actions/checkout@v3
-
       - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 16
-
       - uses: pnpm/action-setup@v2.2.2
         name: Install pnpm
         id: pnpm-install
         with:
           version: 7
           run_install: false
-
       - name: Get pnpm store directory
         id: pnpm-cache
         run: |
           echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-
       - name: Setup pnpm cache
         uses: actions/cache@v3
         with:
@@ -635,22 +560,17 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-
       - name: Install dependencies
         run: pnpm install
-
       - name: Download all artifacts
         uses: actions/download-artifact@v3
         with:
           path: artifacts
-
       - name: Move artifacts
         run: pnpm run artifacts
-
       - name: List packages
         run: ls -R ./npm
         shell: bash
-
       - name: Publish
         run: |
           if git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+$";
