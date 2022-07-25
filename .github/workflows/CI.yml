@@ -31,13 +31,12 @@ jobs:
           - host: windows-latest
             build: pnpm run build
             target: x86_64-pc-windows-msvc
-          # FIXME: support i686-pc-windows-msvc
-          # - host: windows-latest
-          #   # FIXME: vitest not pass in i686-pc-windows-msvc
-          #   # https://github.com/2nthony/napi-rs-package-template/runs/7488219745?check_suite_focus=true
-          #   build: |
-          #     pnpm run build --target i686-pc-windows-msvc
-          #   target: i686-pc-windows-msvc
+          - host: windows-latest
+            # FIXME: vitest not pass in i686-pc-windows-msvc
+            # https://github.com/2nthony/napi-rs-package-template/runs/7488219745?check_suite_focus=true
+            build: |
+              npm run build --target i686-pc-windows-msvc
+            target: i686-pc-windows-msvc
           - host: ubuntu-latest
             target: x86_64-unknown-linux-gnu
             docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian
