@@ -155,7 +155,7 @@ jobs:
       - name: Install pnpm
         run: npm i -g pnpm
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm i
       - name: Setup node x86
         uses: actions/setup-node@v3
         if: matrix.settings.target == 'i686-pc-windows-msvc'
@@ -217,7 +217,7 @@ jobs:
             whoami
             env
             freebsd-version
-            pnpm install
+            pnpm i
             pnpm run build
             strip -x *.node
             pnpm run test
@@ -264,7 +264,7 @@ jobs:
       - name: Install pnpm
         run: npm i -g pnpm
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm i
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
@@ -307,7 +307,7 @@ jobs:
       - name: Install pnpm
         run: npm i -g pnpm
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm i
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
@@ -352,7 +352,7 @@ jobs:
       - name: Install dependencies
         run: |
           pnpm config set supportedArchitectures.libc "musl"
-          pnpm install
+          pnpm i
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
@@ -403,7 +403,7 @@ jobs:
         run: |
           pnpm config set supportedArchitectures.cpu "arm64"
           pnpm config set supportedArchitectures.libc "glibc"
-          pnpm install
+          pnpm i
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
@@ -446,7 +446,7 @@ jobs:
         run: |
           pnpm config set supportedArchitectures.cpu "arm64"
           pnpm config set supportedArchitectures.libc "musl"
-          pnpm install
+          pnpm i
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
@@ -494,7 +494,7 @@ jobs:
       - name: Install dependencies
         run: |
           pnpm config set supportedArchitectures.cpu "arm"
-          pnpm install
+          pnpm i
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
@@ -535,7 +535,7 @@ jobs:
       - name: Install pnpm
         run: npm i -g pnpm
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm i
       - name: Download all artifacts
         uses: actions/download-artifact@v3
         with:
