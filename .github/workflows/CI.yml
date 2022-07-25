@@ -221,9 +221,9 @@ jobs:
             env
             freebsd-version
             pnpm install
-            pnpm run build
+            pnpm build
             strip -x *.node
-            pnpm run test
+            pnpm test
             rm -rf node_modules
             rm -rf target
       - name: Upload artifact
