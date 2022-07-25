@@ -35,7 +35,7 @@ jobs:
             # FIXME: vitest not pass in i686-pc-windows-msvc
             # https://github.com/2nthony/napi-rs-package-template/runs/7488219745?check_suite_focus=true
             build: |
-              pnpm run build --target i686-pc-windows-msvc
+              npm run build --target i686-pc-windows-msvc
             target: i686-pc-windows-msvc
           - host: ubuntu-latest
             target: x86_64-unknown-linux-gnu
