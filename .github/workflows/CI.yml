@@ -165,6 +165,7 @@ jobs:
         if: matrix.settings.target == 'i686-pc-windows-msvc'
         with:
           node-version: 16
+          check-latest: true
           architecture: x86
       - name: Build in docker
         uses: addnab/docker-run-action@v3
