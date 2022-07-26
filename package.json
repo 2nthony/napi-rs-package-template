@@ -54,7 +54,8 @@
     "prepublishOnly": "napi prepublish -t npm",
     "test": "vitest run --reporter verbose",
     "version": "napi version",
-    "rename": "napi rename && npm run format:prettier"
+    "rename": "napi rename && npm run format:prettier",
+    "release": "bumpp --tag --commit --push"
   },
   "devDependencies": {
     "@2nthony/prettier-config": "^1.0.1",
@@ -63,6 +64,7 @@
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
     "benny": "^3.7.1",
+    "bumpp": "^8.2.1",
     "chalk": "^5.0.1",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
