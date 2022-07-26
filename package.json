@@ -52,7 +52,7 @@
     "format:rs": "cargo fmt",
     "lint": "eslint . -c ./.eslintrc.yml",
     "prepublishOnly": "napi prepublish -t npm",
-    "test": "vitest run",
+    "test": "vitest run --reporter verbose",
     "version": "napi version",
     "rename": "napi rename && npm run format:prettier"
   },
