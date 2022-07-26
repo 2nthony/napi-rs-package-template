@@ -46,7 +46,7 @@ After `yarn build/npm run build` command, you can see `package-template.[darwin|
 
 ### Test
 
-With [ava](https://github.com/avajs/ava), run `yarn test/npm run test` to testing native addon. You can also switch to another testing framework if you want.
+With [vitest](https://github.com/vitest-dev/vitest), run `yarn test/npm run test` to testing native addon. You can also switch to another testing framework if you want.
 
 ### CI
 
@@ -79,14 +79,14 @@ In this package, we choose a better way to solve this problem. We release differ
 And you will see:
 
 ```bash
-$ ava --verbose
+$ vitest --reporter verbose
 
-  ✔ sync function from native code
-  ✔ sleep function from native code (201ms)
-  ─
+ ✓ test/index.test.ts (1)
+   ✓ sync function from native code
 
-  2 tests passed
-✨  Done in 1.12s.
+Test Files  1 passed (1)
+     Tests  1 passed (1)
+      Time  573ms (in thread 1ms, 57294.94%)
 ```
 
 ## Release package
@@ -98,9 +98,7 @@ In `Settings -> Secrets`, add **NPM_TOKEN** into it.
 When you want to release the package:
 
 ```
-npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease [--preid=<prerelease-id>] | from-git]
-
-git push
+yarn bumpp
 ```
 
 GitHub actions will do the rest job for you.
