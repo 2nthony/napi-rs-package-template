@@ -12,4 +12,4 @@
 # Generated codes
 index.js linguist-detectable=false
 index.d.ts linguist-detectable=false 
-
+.yarn/releases/*.cjs linguist-detectable=false
