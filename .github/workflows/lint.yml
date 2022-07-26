@@ -5,7 +5,7 @@ on:
     branches:
       - main
     tags-ignore:
-      - '**'
+      - "**"
   pull_request:
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'yarn'
+          cache: "yarn"
           check-latest: true
 
       - name: Install
@@ -36,7 +36,7 @@ jobs:
           path: node_modules
           key: npm-cache-lint-node@16
 
-      - name: 'Install dependencies'
+      - name: "Install dependencies"
         run: yarn install --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
 
       - name: ESLint
