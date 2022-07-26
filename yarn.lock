@@ -5,6 +5,13 @@ __metadata:
   version: 6
   cacheKey: 8
 
+"@2nthony/prettier-config@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@2nthony/prettier-config@npm:1.0.1"
+  checksum: fd05f1d84f5803f926ffddf38cf6da908d2f74330bdfa0c207590a8af987bc0537accecbd0ab3bcac8cb1095f34888da04500a7af9c616b6e95c7c8307c7afb9
+  languageName: node
+  linkType: hard
+
 "@arrows/array@npm:^1.4.1":
   version: 1.4.1
   resolution: "@arrows/array@npm:1.4.1"
@@ -104,6 +111,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@napi-rs/package-template@workspace:."
   dependencies:
+    "@2nthony/prettier-config": ^1.0.1
     "@napi-rs/cli": ^2.9.0
     "@swc-node/register": ^1.5.1
     "@typescript-eslint/eslint-plugin": ^5.27.1
