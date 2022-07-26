@@ -52,7 +52,7 @@
     "format:rs": "cargo fmt",
     "lint": "eslint . -c ./.eslintrc.yml",
     "prepublishOnly": "napi prepublish -t npm",
-    "test": "vitest run --reporter verbose",
+    "test": "ava",
     "version": "napi version"
   },
   "devDependencies": {
@@ -61,6 +61,7 @@
     "@swc-node/register": "^1.5.1",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
+    "ava": "^4.3.0",
     "benny": "^3.7.1",
     "chalk": "^5.0.1",
     "eslint": "^8.17.0",
@@ -71,8 +72,7 @@
     "lint-staged": "^13.0.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.6.2",
-    "typescript": "^4.7.3",
-    "vitest": "^0.19.1"
+    "typescript": "^4.7.3"
   },
   "lint-staged": {
     "*.@(js|ts|tsx)": [
