@@ -82,16 +82,5 @@
       "prettier --write"
     ]
   },
-  "ava": {
-    "require": [
-      "@swc-node/register"
-    ],
-    "extensions": [
-      "ts"
-    ],
-    "environmentVariables": {
-      "TS_NODE_PROJECT": "./tsconfig.json"
-    }
-  },
   "packageManager": "yarn@3.2.1"
 }
