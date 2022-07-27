@@ -1,5 +1,5 @@
 {
-  "name": "napi-rs-package-template-android-arm64",
+  "name": "napi-rs-starter-android-arm64",
   "version": "0.0.0",
   "os": [
     "android"
@@ -7,12 +7,14 @@
   "cpu": [
     "arm64"
   ],
-  "main": "napi-rs-package-template.android-arm64.node",
+  "main": "napi-rs-starter.android-arm64.node",
   "files": [
-    "napi-rs-package-template.android-arm64.node"
+    "napi-rs-starter.android-arm64.node"
   ],
+  "description": "My napi rs library starter.",
   "license": "MIT",
   "engines": {
     "node": ">= 10"
-  }
+  },
+  "repository": "https://github.com/2nthony/napi-rs-starter"
 }

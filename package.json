@@ -1,6 +1,8 @@
 {
-  "name": "napi-rs-package-template",
+  "name": "napi-rs-starter",
   "version": "0.0.0",
+  "description": "My napi rs library starter.",
+  "repository": "https://github.com/2nthony/napi-rs-starter",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
@@ -8,7 +10,7 @@
     "index.js"
   ],
   "napi": {
-    "name": "package-template",
+    "name": "napi-rs-starter",
     "triples": {
       "additional": [
         "aarch64-apple-darwin",
@@ -32,6 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
     "benny": "^3.7.1",
+    "bumpp": "^8.2.1",
     "eslint": "^8.20.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
@@ -48,15 +51,16 @@
   "scripts": {
     "artifacts": "napi artifacts",
     "bench": "node -r @swc-node/register benchmark/bench.ts",
-    "build": "napi build --platform --release",
-    "build:debug": "napi build --platform",
+    "build": "napi build --platform --release --pipe \"prettier -w\"",
+    "build:debug": "napi build --platform --pipe \"prettier -w\"",
     "format": "npm run format:prettier && npm run format:rs",
     "format:prettier": "prettier . -w",
     "format:rs": "cargo fmt",
     "lint": "eslint . -c ./.eslintrc.yml",
     "prepublishOnly": "napi prepublish -t npm",
     "test": "vitest run --reporter verbose",
-    "version": "napi version"
+    "version": "napi version",
+    "release": "bumpp --tag --commit --push"
   },
   "lint-staged": {
     "*.@(js|ts|tsx)": [

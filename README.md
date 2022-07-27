@@ -1,4 +1,4 @@
-# `napi-rs-package-template`
+# `napi-rs-starter`
 
 [![version](https://img.shields.io/npm/v/napi-rs-package-template?label=&color=29BC9B)](https://npm.im/napi-rs-package-template)
 ![https://github.com/2nthony/napi-rs-package-template/actions](https://img.shields.io/github/workflow/status/2nthony/napi-rs-package-template/CI?label=)
@@ -15,7 +15,7 @@
 ## Install this test package
 
 ```
-yarn add napi-rs-package-template
+yarn add napi-rs-starter
 ```
 
 ## Support matrix
@@ -98,7 +98,7 @@ In `Settings -> Secrets`, add **NPM_TOKEN** into it.
 When you want to release the package:
 
 ```
-yarn bumpp
+yarn release
 ```
 
 GitHub actions will do the rest job for you.
