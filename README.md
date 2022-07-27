@@ -98,7 +98,7 @@ In `Settings -> Secrets`, add **NPM_TOKEN** into it.
 When you want to release the package:
 
 ```
-yarn bumpp
+yarn release
 ```
 
 GitHub actions will do the rest job for you.

@@ -34,6 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
     "benny": "^3.7.1",
+    "bumpp": "^8.2.1",
     "eslint": "^8.20.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
@@ -58,7 +59,8 @@
     "lint": "eslint . -c ./.eslintrc.yml",
     "prepublishOnly": "napi prepublish -t npm",
     "test": "vitest run --reporter verbose",
-    "version": "napi version"
+    "version": "napi version",
+    "release": "bumpp --tag --commit --push"
   },
   "lint-staged": {
     "*.@(js|ts|tsx)": [
