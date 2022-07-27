@@ -1,3 +1,3 @@
-# `my-napi-rs-starter-android-arm-eabi`
+# `napi-rs-starter-android-arm-eabi`
 
-This is the **armv7-linux-androideabi** binary for `my-napi-rs-starter`
+This is the **armv7-linux-androideabi** binary for `napi-rs-starter`

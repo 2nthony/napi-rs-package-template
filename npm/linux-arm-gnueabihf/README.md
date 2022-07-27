@@ -1,3 +1,3 @@
-# `my-napi-rs-starter-linux-arm-gnueabihf`
+# `napi-rs-starter-linux-arm-gnueabihf`
 
-This is the **armv7-unknown-linux-gnueabihf** binary for `my-napi-rs-starter`
+This is the **armv7-unknown-linux-gnueabihf** binary for `napi-rs-starter`

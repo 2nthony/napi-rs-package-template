@@ -1,3 +1,3 @@
-# `my-napi-rs-starter-win32-arm64-msvc`
+# `napi-rs-starter-win32-arm64-msvc`
 
-This is the **aarch64-pc-windows-msvc** binary for `my-napi-rs-starter`
+This is the **aarch64-pc-windows-msvc** binary for `napi-rs-starter`

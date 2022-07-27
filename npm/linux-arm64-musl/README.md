@@ -1,3 +1,3 @@
-# `my-napi-rs-starter-linux-arm64-musl`
+# `napi-rs-starter-linux-arm64-musl`
 
-This is the **aarch64-unknown-linux-musl** binary for `my-napi-rs-starter`
+This is the **aarch64-unknown-linux-musl** binary for `napi-rs-starter`

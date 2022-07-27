@@ -1,6 +1,8 @@
 {
-  "name": "my-napi-rs-starter",
+  "name": "napi-rs-starter",
   "version": "0.0.0",
+  "description": "My napi rs library starter.",
+  "repository": "https://github.com/2nthony/napi-rs-starter",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
@@ -8,7 +10,7 @@
     "index.js"
   ],
   "napi": {
-    "name": "my-napi-rs-starter",
+    "name": "napi-rs-starter",
     "triples": {
       "additional": [
         "aarch64-apple-darwin",
