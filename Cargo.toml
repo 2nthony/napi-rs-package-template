@@ -1,6 +1,6 @@
 [package]
 edition = "2021"
-name = "napi-rs-package-template"
+name = "napi-rs-starter"
 version = "0.0.0"
 
 [lib]
