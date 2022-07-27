@@ -348,7 +348,9 @@ jobs:
       matrix:
         node:
           - '14'
-          - '16'
+          # FIXME: v8::FromJust Maybe value is Nothing
+          # https://github.com/vitest-dev/vitest/issues/1191
+          # - '16'
           - '18'
     runs-on: ubuntu-latest
     steps:
@@ -432,7 +434,9 @@ jobs:
       matrix:
         node:
           - '14'
-          - '16'
+          # FIXME: v8::FromJust Maybe value is Nothing
+          # https://github.com/vitest-dev/vitest/issues/1191
+          # - '16'
           - '18'
     runs-on: ubuntu-latest
     steps:
