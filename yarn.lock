@@ -2619,18 +2619,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^3.3.4":
-  version: 3.3.4
-  resolution: "nanoid@npm:3.3.4"
-  bin:
-    nanoid: bin/nanoid.cjs
-  checksum: 2fddd6dee994b7676f008d3ffa4ab16035a754f4bb586c61df5a22cf8c8c94017aadd360368f47d653829e0569a92b129979152ff97af23a558331e47e37cd9c
-  languageName: node
-  linkType: hard
-
-"napi-rs-package-template@workspace:.":
+"my-napi-rs-starter@workspace:.":
   version: 0.0.0-use.local
-  resolution: "napi-rs-package-template@workspace:."
+  resolution: "my-napi-rs-starter@workspace:."
   dependencies:
     "@2nthony/prettier-config": ^1.0.1
     "@napi-rs/cli": ^2.10.1
@@ -2649,6 +2640,15 @@ __metadata:
     vitest: ^0.19.1
   languageName: unknown
   linkType: soft
+
+"nanoid@npm:^3.3.4":
+  version: 3.3.4
+  resolution: "nanoid@npm:3.3.4"
+  bin:
+    nanoid: bin/nanoid.cjs
+  checksum: 2fddd6dee994b7676f008d3ffa4ab16035a754f4bb586c61df5a22cf8c8c94017aadd360368f47d653829e0569a92b129979152ff97af23a558331e47e37cd9c
+  languageName: node
+  linkType: hard
 
 "natural-compare@npm:^1.4.0":
   version: 1.4.0

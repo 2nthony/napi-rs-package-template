@@ -1,5 +1,5 @@
 {
-  "name": "napi-rs-package-template",
+  "name": "my-napi-rs-starter",
   "version": "0.0.0",
   "main": "index.js",
   "types": "index.d.ts",
@@ -8,7 +8,7 @@
     "index.js"
   ],
   "napi": {
-    "name": "package-template",
+    "name": "my-napi-rs-starter",
     "triples": {
       "additional": [
         "aarch64-apple-darwin",
