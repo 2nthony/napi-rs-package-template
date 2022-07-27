@@ -1,21 +1,21 @@
 import b from "benny";
 
-import { plus100 } from "../index";
+import { sum } from "../index";
 
-function add(a: number) {
-  return a + 100;
+function jsSum(a: number, b: number) {
+  return a + b;
 }
 
 async function run() {
   await b.suite(
-    "Add 100",
+    "Sum 1 + 2",
 
-    b.add("Native a + 100", () => {
-      plus100(10);
+    b.add("Native 1 + 2", () => {
+      sum(1, 2);
     }),
 
-    b.add("JavaScript a + 100", () => {
-      add(10);
+    b.add("JavaScript 1 + 2", () => {
+      jsSum(1, 2);
     }),
 
     b.cycle(),
