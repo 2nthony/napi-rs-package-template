@@ -51,8 +51,8 @@
   "scripts": {
     "artifacts": "napi artifacts",
     "bench": "node -r @swc-node/register benchmark/bench.ts",
-    "build": "napi build --platform --release && npm run format:prettier",
-    "build:debug": "napi build --platform && npm run format:prettier",
+    "build": "napi build --platform --release --pipe \"prettier -w\"",
+    "build:debug": "napi build --platform --pipe \"prettier -w\"",
     "format": "npm run format:prettier && npm run format:rs",
     "format:prettier": "prettier . -w",
     "format:rs": "cargo fmt",
