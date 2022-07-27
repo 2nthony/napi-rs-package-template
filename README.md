@@ -102,3 +102,7 @@ yarn release
 ```
 
 GitHub actions will do the rest job for you.
+
+## License
+
+MIT &copy; [2nthony](https://github.com/sponsors/2nthony)
